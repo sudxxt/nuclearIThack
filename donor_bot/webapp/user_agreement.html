@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Согласие на обработку ПД</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--tg-theme-bg-color, #f8f8f8);
+            color: var(--tg-theme-text-color, #222);
+        }
+        header {
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            background-color: var(--tg-theme-header-bg-color, #ffffff);
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .content {
+            padding: 12px 16px 90px; /* bottom padding for button */
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        .checkbox {
+            display: flex;
+            align-items: center;
+            margin: 16px;
+            font-size: 14px;
+        }
+        .checkbox input {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+        button {
+            position: fixed;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            height: 48px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: var(--tg-theme-button-color, #0088cc);
+            color: var(--tg-theme-button-text-color, #fff);
+            border: none;
+            border-radius: 8px;
+        }
+        button:disabled {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <header>Пользовательское соглашение</header>
+    <div class="content" id="policyText"></div>
+
+    <label class="checkbox">
+        <input type="checkbox" id="agreeChk" /> Я принимаю условия политики
+    </label>
+
+    <button id="acceptBtn" disabled>Принять</button>
+
+    <script>
+        const tg = window.Telegram?.WebApp;
+        if (tg) tg.ready();
+
+        // --- Insert policy text (shortened for demo; replace with full version) ---
+        const policy = `Политика НИЯУ МИФИ в отношении обработки персональных данных\n\n` +
+            `1. Общие положения\n1.1. Настоящая Политика разработана в целях защиты прав и свобод субъекта персональных данных ...\n` +
+            `\n(сокращено для примера)\n`;
+        document.getElementById("policyText").textContent = policy;
+
+        // Enable button only when checkbox ticked
+        const chk = document.getElementById("agreeChk");
+        const btn = document.getElementById("acceptBtn");
+        chk.addEventListener("change", () => {
+            btn.disabled = !chk.checked;
+        });
+
+        btn.addEventListener("click", () => {
+            if (!chk.checked) return;
+            if (tg) {
+                tg.sendData("pd_agreed");
+                tg.close();
+            } else {
+                alert("Telegram WebApp API недоступен.");
+            }
+        });
+    </script>
+</body>
+</html> 
