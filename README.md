@@ -1,6 +1,6 @@
 # Thinkasta MEPHI Bot - AI-ассистент для донорского движения
 
-[![Telegram Bot](https://img.shields.io/badge/Telegram-Bot-blue?style=flat&logo=telegram)](https://t.me/ваш_бот) <!-- Замените на реальную ссылку -->
+[![Telegram Channel](https://img.shields.io/badge/Telegram-Bot-blue?style=flat&logo=telegram)](https://t.me/thinkasta) <!-- Замените на реальную ссылку -->
 
 **Thinkasta MEPHI Bot** — это комплексное решение на базе Telegram для автоматизации и координации донорского движения в НИЯУ МИФИ. Бот служит единой точкой входа для доноров и мощным инструментом управления для организаторов, снимая с них до 90% рутинных задач.
 
